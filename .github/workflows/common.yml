@@ -128,13 +128,33 @@ jobs:
 #      - name: Test common API
 #        run: make test-common
 
-      - name: create SBOM assets
+      - name: create PMM Agent SBOM assets
         if: startsWith(github.ref, 'refs/tags/')
         uses: anchore/sbom-action@v0
         with:
-          path: build/
-#          artifact-name: all.spdx
+          path: build/pmm-agent
+          artifact-name: pmm-agent-sbom.spdx
 
+      - name: create PMM Admin SBOM assets
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: anchore/sbom-action@v0
+        with:
+          path: build/pmm-admin
+          artifact-name: pmm-admin-sbom.spdx
+
+      - name: create PMM Managed SBOM assets
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: anchore/sbom-action@v0
+        with:
+          path: build/pmm-managed
+          artifact-name: pmm-managed-sbom.spdx
+
+      - name: create VM Proxy SBOM assets
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: anchore/sbom-action@v0
+        with:
+          path: build/vm_proxy
+          artifact-name: vm-proxy-sbom.spdx
       - name: publish SBOM assets
         if: startsWith(github.ref, 'refs/tags/')
         uses: anchore/sbom-action/publish-sbom@v0
