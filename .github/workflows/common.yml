@@ -128,40 +128,6 @@ jobs:
 #      - name: Test common API
 #        run: make test-common
 
-      - name: create PMM SBOM assets
-        if: startsWith(github.ref, 'refs/tags/')
-        uses: anchore/sbom-action@v0
-        with:
-          file: go.mod
-          artifact-name: pmm.spdx.json
-
-#      - name: create PMM Admin SBOM assets
-#        if: startsWith(github.ref, 'refs/tags/')
-#        uses: anchore/sbom-action@v0
-#        with:
-#          file: ./bin/pmm-admin
-#          artifact-name: pmm-admin.spdx.json
-
-#      - name: create PMM Managed SBOM assets
-#        if: startsWith(github.ref, 'refs/tags/')
-#        uses: anchore/sbom-action@v0
-#        with:
-#          file: ./bin/pmm-managed
-#          artifact-name: pmm-managed.spdx.json
-
-#      - name: create VM Proxy SBOM assets
-#        if: startsWith(github.ref, 'refs/tags/')
-#        uses: anchore/sbom-action@v0
-#        with:
-#          file: ./bin/vm_proxy
-#          artifact-name: vm-proxy.spdx.json
-
-      - name: publish SBOM assets
-        if: startsWith(github.ref, 'refs/tags/')
-        uses: anchore/sbom-action/publish-sbom@v0
-        with:
-          sbom-artifact-match: ".*\\.spdx\\.json$"
-
 #      - name: Run debug commands on failure
 #        if: ${{ failure() }}
 #        run: |
