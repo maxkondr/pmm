@@ -132,29 +132,29 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         uses: anchore/sbom-action@v0
         with:
-          file: bin/pmm-agent
-          artifact-name: pmm-agent-sbom.spdx
+          file: ./bin/pmm-agent
+          id: pmm-agent
 
       - name: create PMM Admin SBOM assets
         if: startsWith(github.ref, 'refs/tags/')
         uses: anchore/sbom-action@v0
         with:
-          file: bin/pmm-admin
-          artifact-name: pmm-admin-sbom.spdx
+          file: ./bin/pmm-admin
+          id: pmm-admin
 
       - name: create PMM Managed SBOM assets
         if: startsWith(github.ref, 'refs/tags/')
         uses: anchore/sbom-action@v0
         with:
-          file: bin/pmm-managed
-          artifact-name: pmm-managed-sbom.spdx
+          file: ./bin/pmm-managed
+          id: pmm-managed
 
       - name: create VM Proxy SBOM assets
         if: startsWith(github.ref, 'refs/tags/')
         uses: anchore/sbom-action@v0
         with:
-          file: bin/vm_proxy
-          artifact-name: vm-proxy-sbom.spdx
+          file: ./bin/vm_proxy
+          id: vm-proxy
 
       - name: publish SBOM assets
         if: startsWith(github.ref, 'refs/tags/')
