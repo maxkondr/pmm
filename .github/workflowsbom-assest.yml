@@ -3,9 +3,14 @@ on:
   push:
     tags:
       - v[0-9]+.[0-9]+.[0-9]+*
-      
+
+permissions:
+  contents: write
+
 jobs:
   vmproxy:
+    permissions:
+      contents: write # required to upload to the Dependency submission API
     runs-on: ubuntu-latest
     steps:
       - name: create vmproxy SBOM
